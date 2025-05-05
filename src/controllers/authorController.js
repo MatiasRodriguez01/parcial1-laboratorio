@@ -1,5 +1,5 @@
 const Author = require('../modules/author.modul')
-const Book = require('..module.book.modul')
+const Book = require('../modules/book.modul')
 
 const getAuthorId = async (req, res, next) => {
     let author;

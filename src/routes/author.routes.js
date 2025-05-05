@@ -28,3 +28,5 @@ router.put('/:id', getAuthorId, createAuthor)
 router.delete('/:id', getAuthorId, deleteAuthor)
 
 router.put("/:id/addBook/:idBook", getAuthor, createBookInAuthor)
+
+module.exports = router
