@@ -7,7 +7,8 @@ const {
     getAuthor,
     getAllAuthor,
     createAuthor,
-    deleteAuthor
+    deleteAuthor,
+    createBookInAuthor
 
 } = require('../controllers/authorController')
 
@@ -25,3 +26,5 @@ router.post('/', createAuthor)
 router.put('/:id', getAuthorId, createAuthor)
 
 router.delete('/:id', getAuthorId, deleteAuthor)
+
+router.put("/:id/addBook/:idBook", getAuthor, createBookInAuthor)

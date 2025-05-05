@@ -1,11 +1,12 @@
-const Author = require('../modules/authors')
+const Author = require('../modules/author.modul')
+const Book = require('..module.book.modul')
 
 const getAuthorId = async (req, res, next) => {
     let author;
     const { id } = req.params;
 
     try {
-        author = await Author.findById(id).populate("")
+        author = await Author.findById(id).populate("libros")
         if (!author) {
             res.status(400).json({
                 message: `Error el author no se encuentro!!`
@@ -48,19 +49,19 @@ const getAllAuthor = async (req, res) => {
 const createAuthor = async (req, res) => {
     const { nombre, bio, fechaNacimiento, nacionalidad, libros } = req.body
     if (!nombre || !bio || !fechaNacimiento || !nacionalidad) {
-        res.status(400),json({
+        res.status(400), json({
             message: 'Al menos uno de estos campos tiene que ser requerido: nombre, bio, fechaNacimiento, nacionalidad'
         })
     }
 
     try {
         const newAuthor = new Author(
-            { 
-                nombre, 
-                bio, 
+            {
+                nombre,
+                bio,
                 fechaNacimiento,
-                nacionalidad, 
-                libros 
+                nacionalidad,
+                libros
             }
         )
 
@@ -111,12 +112,35 @@ const deleteAuthor = async (req, res) => {
     }
 }
 
+const createBookInAuthor = async (req, res) => {
+
+    const { idBook } = req.params;
+
+    try {
+        const { titulo, resumen, genero, publicacion, disponible } = req.body
+
+        const newBook = await Book.findById(idBook);
+
+        const author = res.author;
+        author.libros.push(newBook._id)
+        
+        await author.save();
+
+        res.json(newBook)
+    } catch (err) {
+        res.status(400).json({
+            message: `Error en createBookInAuthor: , ${err.message}`
+        })
+    }
+}
+
 
 module.exports = {
     getAuthorId,
     getAuthor,
     getAllAuthor,
     createAuthor,
-    deleteAuthor
+    deleteAuthor,
+    createBookInAuthor
 
 }
