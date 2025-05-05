@@ -19,7 +19,7 @@ mongoose.connect(URL, {
 const db = mongoose.connection;
 
 
-app.use("/books", bookRoutes)
+app.use("/libros", bookRoutes)
 
 const port = PORT || 3000
 app.listen(port, () => {

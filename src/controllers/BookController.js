@@ -1,6 +1,6 @@
-const Book = require('../modules/bookModule')
+const Book = require('../modules/book.modul')
 
-const getBookId = async (res, req, next) => {
+const getBookId = async (req, res, next) => {
     let book;
     const { id } = req.params;
 
@@ -21,12 +21,12 @@ const getBookId = async (res, req, next) => {
     next();
 }
 
-const getBook = async (res, req) => {
+const getBook = async (req, res) => {
     const book = res.book;
     res.json(book)
 }
 
-const getAllBooks = async (res, req) => {
+const getAllBooks = async (req, res) => {
     try {
 
         const books = await Book.find();
@@ -44,7 +44,7 @@ const getAllBooks = async (res, req) => {
     }
 }
 
-const createBook = async (res, req) => {
+const createBook = async (req, res) => {
     const { titulo, resumen, genero, publicacion, disponible } = req.body
     if (!titulo || !resumen || !genero || !publicacion || !disponible ) {
         res.status(400).json({
@@ -73,7 +73,7 @@ const createBook = async (res, req) => {
     }
 }
 
-const updateBook = async (res, req) => {
+const updateBook = async (req, res) => {
     
     const book = res.book;
     try {
@@ -93,7 +93,7 @@ const updateBook = async (res, req) => {
     }
 }
 
-const deleteBook = async (res, req) => {
+const deleteBook = async (req, res) => {
     const book = res.book;
 
     try {
