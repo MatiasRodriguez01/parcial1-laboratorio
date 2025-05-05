@@ -2,12 +2,13 @@ const mongoose = require("mongoose")
 
 const Book = new mongoose.Schema(
     {
-        Titulo: String,
-        Resumen: String,
-        Género: String,
-        Publicacion: Date,
-        Disponible: Boolean
+        titulo: String,
+        resumen: String,
+        genero: String,
+        publicacion: Date,
+        disponible: Boolean
 
     }
 )
 
+module.exports = mongoose.model("Book", Book)
