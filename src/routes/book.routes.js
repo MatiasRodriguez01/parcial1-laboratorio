@@ -20,3 +20,5 @@ router.post("/", getBookId, createBook);
 router.put("/:id", getBookId, updateBook);
 
 router.delete("/:id", getBookId, deleteBook);
+
+module.exports = router

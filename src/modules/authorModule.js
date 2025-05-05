@@ -2,11 +2,11 @@ const mongoose = require("mongoose")
 
 const Author = new mongoose.Schema(
     {
-        Nombre: String,
-        Bio: String,
-        FechaNacimiento: Date,
-        Nacionalidad: String,
-        Libros: [
+        nombre: String,
+        bio: String,
+        fechaNacimiento: Date,
+        nacionalidad: String,
+        libros: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Book"
